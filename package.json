@@ -1,48 +1,21 @@
 {
-  "name": "karngdarbo",
+  "name": "karngdarbo-site",
   "version": "0.1.0",
-  "main": "http://localhost:8080",
-  "node-remote": "http://localhost:8080",
+  "main": "index.html",
   "scripts": {
-    "start": "nw ./dist",
-    "dev": "concurrently \"vue-cli-service serve\" \"nw .\"",
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build && node build-script.js",
-    "lint": "vue-cli-service lint --no-fix",
-    "fix": "vue-cli-service lint --fix",
-    "test": "npm run unit",
-    "unit": "vue-cli-service test:unit",
-    "sass": "node-sass -w -i -o=src/css --output-style=expanded --error-bell ./src/sass",
+    "start": ".",
+    "lint": ".",
+    "fix": ".",
+    "sass": "node-sass -w -i -o=css --output-style=expanded --error-bell ./sass",
     "sasslint": "sass-lint -c .sass-lint.yml -v -f table",
     "sassfix": "sass-lint-auto-fix -c .sass-lint.yml"
   },
-  "chromium-args": "--load-extension='./node_modules/nw-vue-devtools/extension'",
-  "window": {
-    "width": 960,
-    "height": 600,
-    "icon": "public/logo.png"
-  },
   "dependencies": {
-    "vue": "^2.5.17",
-    "vuex": "^3.0.1"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.0.3",
-    "@vue/cli-plugin-eslint": "^3.0.3",
-    "@vue/cli-plugin-unit-jest": "^3.0.3",
-    "@vue/cli-service": "^3.0.3",
-    "@vue/test-utils": "^1.0.0-beta.20",
-    "babel-core": "7.0.0-bridge.0",
-    "babel-jest": "^23.0.1",
-    "concurrently": "^4.0.1",
     "node-sass": "^4.9.0",
-    "nw": "sdk",
-    "nw-vue-devtools": "^1.2.0",
-    "nwjs-builder-phoenix": "^1.14.8",
     "sass-lint-auto-fix": "^0.14.0",
-    "sass-loader": "^7.0.1",
     "sasslint": "0.0.10",
-    "tjw-sasslint-rules": "1.x.x",
-    "vue-template-compiler": "^2.5.17"
+    "tjw-sasslint-rules": "1.x.x"
   }
 }

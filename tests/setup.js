@@ -15,7 +15,9 @@ global.nw = {
       nw: '0.0.0'
     }
   },
+  require: jest.fn(),
   Shell: {
     openExternal: jest.fn()
   }
 };
+

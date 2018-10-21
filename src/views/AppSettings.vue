@@ -32,7 +32,7 @@
     </div>
     <div>
       <strong>Pick Theme</strong>:
-      <select v-model="pickedTheme" @change="setTheme">
+      <select v-model="pickedTheme" @change="setTheme" ref="testPickTheme">
         <option v-for="(theme, themeIndex) in themesList" :key="'theme' + themeIndex" :value="theme.file">
           {{ theme.title }}
         </option>
@@ -47,7 +47,7 @@ export default {
   name: 'AppSettings',
   data: function () {
     return {
-      newRepoPath: nw.App.startPath,
+      newRepoPath: global.nw.App.startPath,
       pickedTheme: '',
       scrollbarSettingChanged: false,
       useCustomScrollbars: false
@@ -58,7 +58,7 @@ export default {
       this.$store.dispatch('getBranchList');
     },
     reloadApp: function () {
-      nw.Window.get().reload();
+      global.nw.Window.get().reload();
     },
     setNewRepoPath: function () {
       this.$store.commit('setRepoPath', this.newRepoPath.trim());
@@ -108,6 +108,7 @@ export default {
   created: function () {
     this.pickedTheme = this.theme;
     this.useCustomScrollbars = this.customScrollbars;
+    console.log(this.themes);
   }
 };
 </script>

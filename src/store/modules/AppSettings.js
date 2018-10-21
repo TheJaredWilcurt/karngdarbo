@@ -1,9 +1,7 @@
 import helpers from '@/utilities/helpers.js';
 
-const path = nw.require('path');
-const settingsFile = path.join(nw.App.dataPath, 'settings.json');
-
 export const state = {
+  settingsFile: global.nw.require('path').join(global.nw.App.dataPath, 'settings.json'),
   customScrollbars: false,
   theme: ''
 };
@@ -23,12 +21,12 @@ export const mutations = {
 };
 
 export const actions = {
-  deleteSettings: function () {
+  deleteSettings: function (store) {
     const fs = nw.require('fs');
 
     try {
-      if (fs.existsSync(settingsFile)) {
-        fs.unlinkSync(settingsFile);
+      if (fs.existsSync(store.state.settingsFile)) {
+        fs.unlinkSync(store.state.settingsFile);
         // eslint-disable-next-line no-console
         console.log('Successfully deleted settings');
       } else {
@@ -46,8 +44,8 @@ export const actions = {
     store.commit('setAppLoading', true, { root: true });
     let settings = {};
 
-    if (fs.existsSync(settingsFile)) {
-      fs.readFile(settingsFile, function (err, data) {
+    if (fs.existsSync(store.state.settingsFile)) {
+      fs.readFile(store.state.settingsFile, function (err, data) {
         if (err) {
           store.commit('setAppError', 'Unable to load settings.\n' + err, { root: true });
         }
@@ -74,8 +72,6 @@ export const actions = {
     store.commit('setAppLoading', false, { root: true });
   },
   saveSettings: function (store) {
-    const fs = nw.require('fs');
-
     // Grab Settings
     let settings = {
       customScrollbars: store.state.customScrollbars,
@@ -83,7 +79,7 @@ export const actions = {
       theme: store.state.theme
     };
     settings = JSON.stringify(settings, null, 2);
-    fs.writeFile(settingsFile, settings, function (err) {
+    global.nw.require('fs').writeFile(store.state.settingsFile, settings, function (err) {
       if (err) {
         store.commit('setAppError', 'There was an error saving your settings. ' + err);
       }

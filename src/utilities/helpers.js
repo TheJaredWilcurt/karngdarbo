@@ -1,12 +1,8 @@
-const path = nw.require('path');
-
 const helpers = {
   setCurrentWorkingDirectory: function (dir) {
-    const fs = nw.require('fs');
-
     dir = dir.trim();
-    if (fs.existsSync(dir)) {
-      nw.process.chdir(path.join(dir));
+    if (global.nw.require('fs').existsSync(dir)) {
+      global.nw.process.chdir(global.nw.require('path').join(dir));
     }
   },
   setHtmlTagClasses: function (theme, useCustomScrollbars) {
@@ -23,14 +19,12 @@ const helpers = {
     document.documentElement.className = classes;
   },
   validateRepoPath: function (repoPath) {
-    const fs = nw.require('fs');
-
-    let gitDir = path.join(repoPath, '.git');
+    let gitDir = global.nw.require('path').join(repoPath, '.git');
     if (
-      fs.existsSync(repoPath) &&
-      fs.lstatSync(repoPath).isDirectory() &&
-      fs.existsSync(gitDir) &&
-      fs.lstatSync(gitDir).isDirectory()
+      global.nw.require('fs').existsSync(repoPath) &&
+      global.nw.require('fs').lstatSync(repoPath).isDirectory() &&
+      global.nw.require('fs').existsSync(gitDir) &&
+      global.nw.require('fs').lstatSync(gitDir).isDirectory()
     ) {
       return true;
     }

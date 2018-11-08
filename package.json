@@ -44,6 +44,9 @@
     "sass-loader": "^7.0.1",
     "sasslint": "0.0.10",
     "tjw-sasslint-rules": "1.x.x",
-    "vue-template-compiler": "^2.5.17"
-  }
+    "vue-template-compiler": "^2.5.17",
+    "webpack-multiline-sass": "0.0.1"
+  },
+  "repository": "https://github.com/TheJaredWilcurt/karngdarbo",
+  "license": "MIT"
 }
